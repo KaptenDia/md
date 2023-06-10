@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/home"
+            android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.pmsk.pemasokita.ui.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_scanFragment"
+            app:destination="@id/scan"/>
+        <action
+                android:id="@+id/action_homeFragment_to_profileFragment"
+                app:destination="@id/profile"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/scan"
+        android:name="com.pmsk.pemasokita.ui.fragment.ScanFragment"
+        android:label="fragment_scan"
+        tools:layout="@layout/fragment_scan">
+        <action
+            android:id="@+id/action_scanFragment_to_homeFragment"
+            app:destination="@id/home"/>
+        <action
+            android:id="@+id/action_scanFragment_to_profileFragment"
+            app:destination="@id/profile"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/profile"
+            android:name="com.pmsk.pemasokita.ui.fragment.ProfileFragment"
+            android:label="fragment_profile"
+            tools:layout="@layout/fragment_profile">
+            <action
+                android:id="@+id/action_profileFragment_to_homeFragment"
+                app:destination="@id/home"/>
+            <action
+                android:id="@+id/action_profileFragment_to_scanFragment"
+                app:destination="@id/scan"/>
+
+    </fragment>
+
+</navigation>

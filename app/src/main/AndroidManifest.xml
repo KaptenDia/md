@@ -1,20 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+          package="com.pmsk.pemasokita">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+
+            <category android:name="android.intent.category.BROWSABLE"/>
+
+            <data android:scheme="https"/>
+        </intent>
+    </queries>
 
     <application
             android:allowBackup="true"
-            android:dataExtractionRules="@xml/data_extraction_rules"
-            android:fullBackupContent="@xml/backup_rules"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.PemasoKita"
-            tools:targetApi="31">
+            android:theme="@style/Theme.PemasoKita">
         <activity
-                android:name=".ui.auth.LoginScreenActivity"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+                android:name=".ui.HomeActivity"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ui.board.PaymentSuccessActivity"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ui.board.EmptyCartActivity"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ui.board.RegisterSuccessActivity"
                 android:exported="false">
             <meta-data
                     android:name="android.app.lib_name"
@@ -22,22 +57,24 @@
         </activity>
         <activity
                 android:name=".ui.SplashScreenActivity"
-                android:exported="true"
-                android:theme="@style/Theme.SplashScreen">
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <meta-data
-                    android:name="android.app.lib_name"
-                    android:value=""/>
         </activity>
         <activity
                 android:name=".ui.MainActivity"
                 android:exported="true">
-            <meta-data
-                    android:name="android.app.lib_name"
-                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ui.auth.RegisterActivity"
+                android:exported="false">
+        </activity>
+        <activity
+                android:name=".ui.auth.LoginScreenActivity"
+                android:exported="false">
         </activity>
     </application>
 

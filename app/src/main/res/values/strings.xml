@@ -5,4 +5,47 @@
     <string name="email">Email</string>
     <string name="masukkan_alamat_email">masukkan alamat email</string>
     <string name="input_password">masukkan password</string>
+    <string name="password">password</string>
+    <string name="required">required</string>
+    <string name="login">Masuk</string>
+    <string name="error_email">Email tidak valid</string>
+    <string name="error_password">Password kurang dari 8</string>
+    <string name="dont_have_account">Belum punya akun?</string>
+    <string name="register">Daftar</string>
+    <string name="sgin_in">Masuk</string>
+    <string name="new_account">Buat akun baru!</string>
+    <string name="input_your_data">Masukkan data lengkapmu</string>
+    <string name="have_an_account">Sudah punya akun?</string>
+    <string name="hint_username">Masukkan nama anda</string>
+    <string name="error_username">Masukkan karakter lebih dari 2</string>
+    <string name="input_username">Masukkan nama lengkap</string>
+    <string name="login_google">Masuk dengan akun google</string>
+    <string name="create_account">Buat akun baru</string>
+    <string name="create_success">Akun kamu sukses di daftarkan!</string>
+    <string name="desc_success">Yay! senang rasanya.Kamu\nbisa langsung menjelajahi\naplikasi kami!</string>
+    <string name="continue_with_google">Lanjutkan dengan akun google</string>
+    <string name="explore">Jelajahi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="belanjaan">Belanjaan</string>
+    <string name="oops">Oopss!,keranjangmu\nmasih kosong\nnihhh!</string>
+    <string name="emptyCartDesc">Pilih product yang ingin kamu beli terlebih dahulu yuk!, silahkan untuk kembali ke menu
+        halaman utama!
+    </string>
+    <string name="back">Kembali</string>
+    <string name="successful_payment">Pembayaran Sukses!</string>
+    <string name="desc_successful_payment">Yay,terima kasih sudah berbelanja\ndi aplikasi kami!, silahkan cek\nriwayat
+        transaksi kamu ya!
+    </string>
+    <string name="home">Home</string>
+    <string name="scan">Scan</string>
+    <string name="profile">Profile</string>
+    <string name="rekomendasi">Rekomendasi Bean Terbaik</string>
+    <string name="populer">Populer</string>
+    <string name="scan_label">Scan Kualitas Bean Kopimu!</string>
+    <string name="scan_desc">Kamu bisa scan bean kopi\nyang kamu punya, dengan menggunakan\nkamera bawaan devicemu /
+        menggunakan\nfoto yang ada di galerimu!.
+    </string>
+    <string name="camera_scan">Scan menggunakan kamera</string>
+    <string name="hallo">Hallo!,</string>
 </resources>

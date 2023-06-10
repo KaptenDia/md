@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "511541497121",
+    "firebase_url": "https://pemasokitaapp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pemasokitaapp",
+    "storage_bucket": "pemasokitaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511541497121:android:ad302c9a832ecb480a8260",
+        "android_client_info": {
+          "package_name": "com.pmsk.pemasokita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511541497121-e0odel0r5lt6ti1hgmk7asg17rrf3d5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA0c_ophZAebt4DmrYtHA6Ub55MW2Gryw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511541497121-e0odel0r5lt6ti1hgmk7asg17rrf3d5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

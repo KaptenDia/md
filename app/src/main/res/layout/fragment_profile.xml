@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   tools:context=".ui.fragment.ProfileFragment">
+
+    <ImageView
+            android:src="@drawable/profile_default"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/profileImageView"
+            android:contentDescription="Profile Image"/>
+
+    <TextView
+            android:id="@+id/prefixText"
+            android:layout_marginStart="16dp"
+            android:text="@string/hallo"
+            app:layout_constraintStart_toEndOf="@id/profileImageView"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="24sp"
+            android:textColor="@color/primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/userEmail"
+            app:layout_constraintTop_toTopOf="@+id/profileImageView" app:layout_constraintVertical_bias="0.0"/>
+
+    <TextView
+            android:id="@+id/userName"
+            app:layout_constraintStart_toEndOf="@id/prefixText"
+            android:layout_marginStart="4dp"
+            tools:text="User"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="24sp"
+            android:textColor="@color/primary"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_alignParentStart="true"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/userEmail"
+            app:layout_constraintTop_toTopOf="@+id/prefixText"
+            app:layout_constraintVertical_bias="0.0"/>
+    <TextView
+            android:id="@+id/userEmail"
+            app:layout_constraintTop_toBottomOf="@id/prefixText"
+            app:layout_constraintStart_toStartOf="@id/prefixText"
+            tools:text="user@gmail.com"
+            android:fontFamily="@font/poppins"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/profileImageView"/>
+
+    <ImageView
+            android:id="@+id/btn_logout"
+            app:layout_constraintTop_toTopOf="@id/profileImageView"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_exit"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Log Out"/>
+
+    <ProgressBar
+            android:id="@+id/loading"
+            android:indeterminateTint="@color/primary"
+            android:layout_width="wrap_content"
+            android:outlineSpotShadowColor="@color/primary"
+            android:outlineAmbientShadowColor="@color/grey"
+            android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

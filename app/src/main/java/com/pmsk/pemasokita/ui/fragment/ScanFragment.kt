@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,41 +14,41 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import com.pmsk.pemasokita.databinding.FragmentScanBinding
 import com.pmsk.pemasokita.ui.scanner.ScannerResultActivity
 import java.io.File
+import java.io.IOException
 
 class ScanFragment : Fragment() {
     private var _binding: FragmentScanBinding? = null
-    private lateinit var currentPhotoPath: String
+    private var currentPhotoPath: String? = null
     private val binding get() = _binding!!
 
-    private val launcherIntentCamera = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val intent = Intent(requireContext(), ScannerResultActivity::class.java)
-            intent.putExtra(ScannerResultActivity.EXTRA_IMAGE_PATH, currentPhotoPath)
-            startActivity(intent)
-        }
-    }
-
-    private val launcherIntentGallery = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val selectedImageUri: Uri? = result.data?.data
-            selectedImageUri?.let { uri ->
-                requireContext().contentResolver.takePersistableUriPermission(
-                    uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
+    private val launcherIntentCamera =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val intent = Intent(requireContext(), ScannerResultActivity::class.java)
-                intent.putExtra(ScannerResultActivity.EXTRA_IMAGE_PATH, uri.toString())
+                intent.putExtra(ScannerResultActivity.EXTRA_IMAGE_PATH, currentPhotoPath)
                 startActivity(intent)
             }
         }
-    }
+
+    private val launcherIntentGallery =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                val selectedImageUri: Uri? = result.data?.data
+                selectedImageUri?.let { uri ->
+                    requireContext().contentResolver.takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                    val intent = Intent(requireContext(), ScannerResultActivity::class.java)
+                    intent.putExtra(ScannerResultActivity.EXTRA_IMAGE_PATH, uri.toString())
+                    startActivity(intent)
+                }
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,13 +72,13 @@ class ScanFragment : Fragment() {
 
     private fun startTakePhoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        createTempFile().also {
+        createTempFile()?.also { file ->
             val photoUri: Uri = FileProvider.getUriForFile(
                 requireContext(),
-                "com.pmsk.pemasokita",
-                it
+                requireContext().packageName ,
+                file
             )
-            currentPhotoPath = it.absolutePath
+            currentPhotoPath = file.absolutePath
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
             launcherIntentCamera.launch(intent)
         }
@@ -92,13 +91,18 @@ class ScanFragment : Fragment() {
         launcherIntentGallery.launch(intent)
     }
 
-    private fun createTempFile(): File {
+    private fun createTempFile(): File? {
         val storageDir: File? = requireContext().getExternalFilesDir(null)
-        return File.createTempFile(
-            "JPEG_${System.currentTimeMillis()}_",
-            ".jpg",
-            storageDir
-        )
+        return try {
+            File.createTempFile(
+                "JPEG_${System.currentTimeMillis()}_",
+                ".jpg",
+                storageDir
+            )
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
     }
 
     private val cameraPermissionCode = 1
@@ -136,7 +140,6 @@ class ScanFragment : Fragment() {
         }
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,

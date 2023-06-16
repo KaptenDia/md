@@ -1,6 +1,7 @@
 package com.pmsk.pemasokita.ui.detail
 
 import ProductViewModel
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -16,6 +17,7 @@ class DetailProductActivity : AppCompatActivity() {
     private lateinit var productViewModel: ProductViewModel
     private var cartFragment: CartFragment? = null
 
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
@@ -35,7 +37,7 @@ class DetailProductActivity : AppCompatActivity() {
         Glide.with(this).load(productImage).into(ivItem)
         findViewById<TextView>(R.id.tvItemName).text = productName
         findViewById<TextView>(R.id.tvItemPrice).text = productPrice
-        findViewById<TextView>(R.id.tvItemAmount).text = "/" + productAmount
+        findViewById<TextView>(R.id.tvItemAmount).text = "/$productAmount"
         findViewById<TextView>(R.id.itemDescription).text = productDescription
 
         val lyDescription = findViewById<LinearLayout>(R.id.lyDescription)
@@ -64,6 +66,7 @@ class DetailProductActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onAttachFragment(fragment: Fragment) {
         super.onAttachFragment(fragment)
         if (fragment is CartFragment) {

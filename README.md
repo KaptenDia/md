@@ -1,5 +1,8 @@
-# md
+# PemasoKita
+
 #Android Project(Kotlin) Capstone Bangkit 2023
+
+
 Pemasokita is a comprehensive supplier app designed to simplify and streamline the procurement process for businesses. With Pemasokita, 
 businesses can easily browse and order various products from different suppliers, all within a single platform.
 - Product Catalog: Pemasokita provides a wide range of product categories, allowing businesses to explore and discover products from different suppliers. 

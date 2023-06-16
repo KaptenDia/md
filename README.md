@@ -2,6 +2,11 @@
 
 #Android Project(Kotlin) Capstone Bangkit 2023
 
+![g1](https://github.com/KaptenDia/md/assets/84517697/9b535295-6f4d-4f41-9947-a738782f9e1c)
+
+![g3](https://github.com/KaptenDia/md/assets/84517697/f4822d02-c2b4-4660-8588-77cc12d87d53)
+
+![g2](https://github.com/KaptenDia/md/assets/84517697/97a9cc11-dd0b-4390-8db2-34bbb231a9f8)
 
 Pemasokita is a comprehensive supplier app designed to simplify and streamline the procurement process for businesses. With Pemasokita, 
 businesses can easily browse and order various products from different suppliers, all within a single platform.

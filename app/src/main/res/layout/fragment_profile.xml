@@ -32,6 +32,7 @@
 
     <TextView
             android:id="@+id/userName"
+            android:layout_marginEnd="4dp"
             app:layout_constraintStart_toEndOf="@id/prefixText"
             android:layout_marginStart="4dp"
             tools:text="User"
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/userEmail"
             app:layout_constraintTop_toTopOf="@+id/prefixText"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.0" app:layout_constraintEnd_toStartOf="@+id/btn_logout"/>
     <TextView
             android:id="@+id/userEmail"
             app:layout_constraintTop_toBottomOf="@id/prefixText"
@@ -67,6 +68,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Log Out"/>
+
+    <pl.droidsonroids.gif.GifImageView
+            android:src="@drawable/gif"
+            android:paddingHorizontal="24dp"
+            android:layout_width="358dp"
+            android:layout_height="356dp"
+            app:layout_constraintTop_toBottomOf="@+id/profileImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:id="@+id/gifImageView"/>
+
+    <TextView
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingHorizontal="24dp"
+            android:textSize="20sp"
+            android:text="@string/maaf_halaman_ini_masih_dalam_ntahap_pengembangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/gifImageView"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+
 
     <ProgressBar
             android:id="@+id/loading"

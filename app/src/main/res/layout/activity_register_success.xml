@@ -40,30 +40,28 @@
               android:layout_height="wrap_content"/>
 
     <TextView android:layout_width="match_parent"
-              android:layout_marginTop="20dp"
+              android:layout_marginTop="16dp"
               android:id="@+id/textViewLabel"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toBottomOf="@id/textViewSuccess"
               android:text="@string/desc_success"
               android:fontFamily="@font/poppins"
-              android:textSize="14sp"
+              android:textSize="20sp"
               android:layout_marginHorizontal="24dp"
               android:textAlignment="center"
               android:textColor="@color/black"
               app:layout_constraintEnd_toEndOf="parent"
               android:layout_height="wrap_content"/>
-
     <Button
             android:id="@+id/btn_explore"
             android:text="@string/explore"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textAllCaps="false"
-            android:layout_marginTop="60dp"
+            android:layout_marginBottom="24dp"
             app:layout_constraintStart_toStartOf="@id/textViewLabel"
             app:layout_constraintEnd_toEndOf="@id/textViewLabel"
-            app:layout_constraintTop_toBottomOf="@id/textViewLabel"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"/>
+            android:layout_width="0dp" app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

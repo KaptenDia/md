@@ -8,7 +8,7 @@ import com.pmsk.pemasokita.R
 import com.pmsk.pemasokita.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
-    private val binding:ActivityHomeBinding by lazy{
+    private val binding: ActivityHomeBinding by lazy{
         ActivityHomeBinding.inflate(layoutInflater)
     }
     override fun onCreate(savedInstanceState: Bundle?) {

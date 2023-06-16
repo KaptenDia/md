@@ -7,23 +7,28 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.pmsk.pemasokita.R
 import com.pmsk.pemasokita.databinding.ActivityLoginScreenBinding
 import com.pmsk.pemasokita.ui.HomeActivity
-import com.pmsk.pemasokita.ui.board.PaymentSuccessActivity
 import com.pmsk.pemasokita.utils.SharedPrefManager
 import com.pmsk.pemasokita.viewmodels.LoginViewModel
 
 class LoginScreenActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInOptions: GoogleSignInOptions
+    private lateinit var googleSignInClient: GoogleSignInClient
     private val binding: ActivityLoginScreenBinding by lazy {
         ActivityLoginScreenBinding.inflate(layoutInflater)
     }
     private val loginViewModel: LoginViewModel by lazy {
-        ViewModelProvider(this).get(LoginViewModel::class.java)
+        ViewModelProvider(this)[LoginViewModel::class.java]
     }
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +37,8 @@ class LoginScreenActivity : AppCompatActivity() {
         val progress = binding.loading
         progress.visibility = View.GONE
         supportActionBar?.hide()
-        binding.tvRegister.setOnClickListener{
-            startActivity(Intent(this,RegisterActivity::class.java))
+        binding.tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
         binding.btnSignIn.setOnClickListener {
             val email = binding.editEmail.text.toString()
@@ -66,6 +71,7 @@ class LoginScreenActivity : AppCompatActivity() {
                 onSuccess = {
                     SharedPrefManager.setLoggedIn(this, true)
                     startActivity(Intent(this, HomeActivity::class.java))
+                    Toast.makeText(this, "Login Berhasil !!" , Toast.LENGTH_SHORT).show()
                 },
                 onError = { errorMessage ->
                     Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
@@ -73,8 +79,68 @@ class LoginScreenActivity : AppCompatActivity() {
                 }
             )
         }
-        binding.btnLoginWithGoogle.setOnClickListener{
-            startActivity(Intent(this,PaymentSuccessActivity::class.java))
+
+        auth = FirebaseAuth.getInstance()
+        googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+
+        binding.btnLoginWithGoogle.setOnClickListener {
+            signInWithGoogle()
         }
     }
+
+
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                account?.let {
+                    val idToken = it.idToken
+                    val displayName = it.displayName
+                    val email = it.email
+                    val progress = binding.loading
+                    progress.visibility = View.GONE
+                    loginViewModel.signInWithGoogle(idToken, displayName, email,
+                        onSuccess = {
+                            val userId = FirebaseAuth.getInstance().currentUser?.uid
+                            if (userId !=null) {
+                                val databaseReference = FirebaseDatabase.getInstance().reference
+                                    .child("users")
+                                    .child(userId)
+                                databaseReference.child("username").setValue(displayName)
+                            }
+                            SharedPrefManager.setLoggedIn(this, true)
+                            startActivity(Intent(this, HomeActivity::class.java))
+                            Toast.makeText(this, "Yeayyy,Login Dengan Akun Google Berhasil!!!.", Toast.LENGTH_SHORT).show()
+                        },
+                        onError = { errorMessage ->
+                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                            progress.visibility = View.GONE
+                        }
+                    )
+                }
+            } catch (e: ApiException) {
+                print(e.toString())
+                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    companion object {
+        private const val RC_SIGN_IN = 123
+    }
 }
+

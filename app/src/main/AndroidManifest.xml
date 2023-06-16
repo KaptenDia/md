@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+                     android:maxSdkVersion="18"/>
 
     <queries>
         <intent>
@@ -28,6 +30,27 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.PemasoKita">
         <activity
+                android:name=".ui.scanner.ScannerResultActivity"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ui.cart.CartScreenActivity"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ui.detail.DetailProductActivity"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
                 android:name=".ui.HomeActivity"
                 android:exported="false">
             <meta-data
@@ -36,13 +59,6 @@
         </activity>
         <activity
                 android:name=".ui.board.PaymentSuccessActivity"
-                android:exported="false">
-            <meta-data
-                    android:name="android.app.lib_name"
-                    android:value=""/>
-        </activity>
-        <activity
-                android:name=".ui.board.EmptyCartActivity"
                 android:exported="false">
             <meta-data
                     android:name="android.app.lib_name"
@@ -76,6 +92,16 @@
                 android:name=".ui.auth.LoginScreenActivity"
                 android:exported="false">
         </activity>
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="com.pmsk.pemasokita"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>

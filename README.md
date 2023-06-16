@@ -18,5 +18,5 @@ and track their order history with each supplier. This feature enables businesse
 The app supports secure online payment methods, ensuring a seamless and efficient ordering experience.
 - Cart and Wishlist: The app provides a cart feature, allowing users to add products and review their selected items before making a purchase. 
 Additionally, users can create wishlists to save products for future reference or share them with colleagues for collaborative decision-making (Cart & Wishilist in development).
-- Notifications: Pemasokita keeps users informed about their order status, delivery updates, and exclusive offers from suppliers. Push notifications ensure that users never miss important updates regarding their purchases or special promotions.
+- Notifications: Pemasokita keeps users informed about their order status, delivery updates, and exclusive offers from suppliers. Push notifications ensure that users never miss important updates regarding their purchases or special promotions.(In Development)
 - User Profiles and Authentication: The app supports user registration and authentication, ensuring personalized experiences and secure access to account information. Users can manage their profiles, view order history, and update their contact details within the app(in development).
